@@ -121,7 +121,8 @@ Analytics (protected)
 Note: analytics endpoints may be cached in Redis if `REDIS_URL` is configured. Caches are invalidated on note writes.
 
 ### Search and Pagination Examples
-
+![Search Feature](./screenshots/search-feature.png)
+![Pagination Feature](./screenshots/pagination-png)
 Use these examples to test the notes list endpoint:
 
 ```http
