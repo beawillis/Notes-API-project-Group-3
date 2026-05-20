@@ -16,12 +16,13 @@ const authorize = require("../middlewares/authorize");
  
 const router = express.Router();
 
-// Define routes for note operations with appropriate HTTP methods and middleware
+
 // All routes that access specific notes require authentication for ownership checks
 router.post("/", protect, createNote);
-router.get("/", protect, getNotes); // Require auth to see user's notes
-router.get("/:id", protect, getSingleNote); // Require auth for ownership check
+router.get("/", getNotes); 
+router.get("/:id", protect, getSingleNote);
 router.put("/:id", protect, updateNote); // Require auth for ownership check
+
 // Only Admin and Editor roles can delete notes (plus ownership check in controller)
 router.delete("/:id", protect, authorize("Admin", "Editor"), deleteNote); 
 
