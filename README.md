@@ -120,9 +120,16 @@ Analytics (protected)
 
 Note: analytics endpoints may be cached in Redis if `REDIS_URL` is configured. Caches are invalidated on note writes.
 
+Health check (public)
+
+- `GET /health` — Returns a simple `200 OK` response for deployment checks.
+
 ### Search and Pagination Examples
-![Search Feature](./screenshots/search-feature.png)
-![Pagination Feature](./screenshots/pagination-png)
+
+The examples below show common ways to query notes in the API.
+
+If you want to add screenshots later, place them in a `screenshots/` folder and update the image paths accordingly.
+
 Use these examples to test the notes list endpoint:
 
 ```http
@@ -155,6 +162,17 @@ If you are testing in Postman or a browser, remember that `GET /api/notes` is pr
 Authorization: Bearer YOUR_JWT_TOKEN
 ```
 
+Example request headers in Postman:
+
+- Key: `Authorization`
+- Value: `Bearer YOUR_JWT_TOKEN`
+
+Example query combinations:
+
+- `GET /api/notes?page=1&limit=5`
+- `GET /api/notes?q=backend&category=Education&sort=-createdAt`
+- `GET /api/notes?tags=node,express&page=2&limit=3`
+
 ---
 
 ## Analytics & Caching
@@ -171,6 +189,7 @@ Authorization: Bearer YOUR_JWT_TOKEN
 - Ensure MongoDB Atlas network access (IP allowlist) and credentials are correct.
 - After deploy, check logs for `Database Connected:` and `Redis Connected (<host>)` messages.
 - The app uses `PORT=3002` locally by default, so ensure that port is free before starting the server.
+- Use `/health` as the Render health check path so the deployment does not require authentication.
 
 ---
 
