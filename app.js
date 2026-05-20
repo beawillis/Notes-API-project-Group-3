@@ -12,6 +12,15 @@ const analyticsRoutes = require("./routes/analytics.routes");// Import analytics
 
 const app = express();
 
+// Public health check for deployment platforms like Render.
+app.get("/health", (req, res) => {
+	res.status(200).json({
+		success: true,
+		message: "OK",
+		uptime: process.uptime(),
+	});
+});
+
 // Middleware setup
 app.use(express.json()); 
 app.use(cors());
