@@ -32,6 +32,10 @@ This backend API provides secure note management (create/read/update/delete) wit
 - Analytics via MongoDB aggregation
 - Optional Redis caching for analytics responses
 
+## Live Deployment
+
+- Render URL: https://group3-g79l.onrender.com
+
 ## Features
 
 - Register / Login with hashed passwords
@@ -116,6 +120,40 @@ Analytics (protected)
 
 Note: analytics endpoints may be cached in Redis if `REDIS_URL` is configured. Caches are invalidated on note writes.
 
+### Search and Pagination Examples
+
+Use these examples to test the notes list endpoint:
+
+```http
+GET /api/notes?q=backend
+```
+
+Searches notes whose text matches `backend`.
+
+```http
+GET /api/notes?page=1&limit=5
+```
+
+Returns the first page with 5 notes per page.
+
+```http
+GET /api/notes?page=2&limit=10&sort=-createdAt
+```
+
+Returns page 2, 10 notes per page, sorted by newest first.
+
+```http
+GET /api/notes?q=node&category=Education&page=1&limit=3
+```
+
+Searches notes matching `node`, filters by `Education`, and returns 3 notes per page.
+
+If you are testing in Postman or a browser, remember that `GET /api/notes` is protected and requires:
+
+```http
+Authorization: Bearer YOUR_JWT_TOKEN
+```
+
 ---
 
 ## Analytics & Caching
@@ -131,6 +169,7 @@ Note: analytics endpoints may be cached in Redis if `REDIS_URL` is configured. C
 - Set `MONGO_URI`, `JWT_SECRET`, and `REDIS_URL` (optional) in your host's environment variables (Render, Heroku, etc.).
 - Ensure MongoDB Atlas network access (IP allowlist) and credentials are correct.
 - After deploy, check logs for `Database Connected:` and `Redis Connected (<host>)` messages.
+- The app uses `PORT=3002` locally by default, so ensure that port is free before starting the server.
 
 ---
 
