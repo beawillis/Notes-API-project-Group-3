@@ -128,7 +128,7 @@ Health check (public)
 
 The examples below show common ways to query notes in the API.
 
-If you want to add screenshots later, place them in a `screenshots/` folder and update the image paths accordingly.
+https://github.com/beawillis/Notes-API-project-Group-3/commit/504f1cf7c4ad1b2d1fe5d27648e72e69244348c3
 
 Use these examples to test the notes list endpoint:
 
